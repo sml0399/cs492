@@ -5,7 +5,7 @@
 	- 2: Type the following command.
 		- pip install opencv-python==4.2.0.32
 		- pip install ffmpeg-python
-		- pip install ffmpeg-python
+		- sudo apt install ffmpeg
 		- pip install .    (at the model directory)
 
 - You must download three .dat files and move them to model/sda/data directory.(Create directory if model/sda/data directory does not exist)
