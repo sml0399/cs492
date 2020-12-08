@@ -8,7 +8,7 @@
 		- pip install ffmpeg-python
 		- pip install .    (at the model directory)
 
-- You must download three .dat files and move them to model/sda/data directory.
+- You must download three .dat files and move them to model/sda/data directory.(Create directory if model/sda/data directory does not exist)
 	- download link: https://drive.google.com/drive/folders/1zqTDtSRylwVrNGky6hLOdacyWIpg8cz1?usp=sharing
 
 
