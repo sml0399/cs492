@@ -1,6 +1,8 @@
 ﻿from flask import Flask, render_template, request, send_file
+import sda
 
 app = Flask(__name__)
+va = sda.VideoAnimator(gpu=0, model_path="crema")
 
 @app.route('/video', methods = ['GET', 'POST'])
 def streaming_video():
@@ -22,8 +24,8 @@ def get_user_image():
         f_audio = request.files['audio']
         f_image.save('./uploads/images/' + name + '.png')
         f_audio.save('./uploads/records/' + name + '.m4a')
-	
-
+	vid, aud = va('./uploads/images/' + name + '.png','./uploads/records/' + name + '.m4a')	
+	va.save_video(vid, aud, './uploads/videos/'+name+'.mp4')
 
     if request.method == 'GET':
         return "not proper access"
