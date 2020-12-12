@@ -1,8 +1,12 @@
-﻿from flask import Flask, render_template, request, send_file
-import sda
+﻿from os import system
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from flask import Flask, render_template, request, send_file
+#import sda
 
 app = Flask(__name__)
-va = sda.VideoAnimator(gpu=0, model_path="crema")
+#va = sda.VideoAnimator(gpu=0, model_path="crema")
 
 @app.route('/video', methods = ['GET', 'POST'])
 def streaming_video():
@@ -23,9 +27,10 @@ def get_user_image():
         f_image = request.files['picture']
         f_audio = request.files['audio']
         f_image.save('./uploads/images/' + name + '.png')
-        f_audio.save('./uploads/records/' + name + '.m4a')
-	vid, aud = va('./uploads/images/' + name + '.png','./uploads/records/' + name + '.m4a')	
-	va.save_video(vid, aud, './uploads/videos/'+name+'.mp4')
+        f_audio.save('./uploads/records/' + name + '.m4a')	
+	system("python executer.py "+name)
+        #vid, aud = va('./uploads/images/' + name + '.png','./uploads/records/' + name + '.m4a')	
+        #va.save_video(vid, aud, './uploads/videos/'+name+'.mp4')
 
     if request.method == 'GET':
         return "not proper access"
@@ -41,3 +46,4 @@ def page_not_found(error):
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
+    #app.run()
